@@ -48,7 +48,7 @@ public class RealTeleporter
 	//------------------------------------------------------------------------------------- setTarget
 	public void setTarget(RealTeleporter target)
 	{
-		this.targetName = target.name;
+		this.targetName = ((target == null) ? "" : target.name);
 		this.target = target;
 	}
 

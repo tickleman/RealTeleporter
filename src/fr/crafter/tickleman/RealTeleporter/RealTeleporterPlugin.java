@@ -28,7 +28,7 @@ public class RealTeleporterPlugin extends RealPlugin
 	//-------------------------------------------------------------------------- RealTeleporterPlugin
 	public RealTeleporterPlugin()
 	{
-		super("tickleman", "RealTeleporter", "0.02");
+		super("tickleman", "RealTeleporter", "0.1");
 	}
 
 	//------------------------------------------------------------------------------- onPlayerCommand
@@ -70,7 +70,7 @@ public class RealTeleporterPlugin extends RealPlugin
 						player.sendMessage("Remove teleporter " + teleporter.name);
 						return true;
 					}
-				} else if (param1.equals("link") || param1.equals("l")) {
+				} else if (param1.equals("link")) {
 					// link
 					RealTeleporter teleporter1 = teleporters.byName.get(param2);
 					RealTeleporter teleporter2 = teleporters.byName.get(param3);
@@ -80,6 +80,108 @@ public class RealTeleporterPlugin extends RealPlugin
 						player.sendMessage("Link teleporter " + teleporter1.name + " to " + teleporter2.name);
 						return true;
 					}
+				} else if (param1.equals("loop") || param1.equals("l")) {
+					// loop link
+					RealTeleporter teleporter1 = teleporters.byName.get(param2);
+					RealTeleporter teleporter2 = teleporters.byName.get(param3);
+					if (teleporter1 != null && teleporter2 != null) {
+						teleporter1.setTarget(teleporter2);
+						teleporter2.setTarget(teleporter1);
+						teleporters.save();
+						player.sendMessage("Link teleporter " + teleporter1.name + " to " + teleporter2.name);
+						player.sendMessage("Link teleporter " + teleporter2.name + " to " + teleporter1.name);
+						return true;
+					}
+				} else if (param1.equals("unlink")) {
+					// unlink
+					RealTeleporter teleporter = teleporters.byName.get(param2);
+					if (teleporter != null) {
+						teleporter.setTarget(null);
+						teleporters.save();
+						player.sendMessage("Unlinked teleporter " + teleporter.name);
+						return true;
+					}
+				} else if (param1.equals("unloop") || param1.equals("u")) {
+					// unloop
+					RealTeleporter teleporter1 = teleporters.byName.get(param2);
+					RealTeleporter teleporter2 = teleporter1.target;
+					if (teleporter1 != null) {
+						teleporter1.setTarget(null);
+						player.sendMessage("Unlinked teleporter " + teleporter1.name);
+					}
+					if (teleporter2 != null) {
+						teleporter2.setTarget(null);
+						player.sendMessage("Unlinked teleporter " + teleporter2.name);
+					}
+					if (teleporter1 != null || teleporter2 != null) {
+						teleporters.save();
+						return true;
+					}
+				} else if (param1.equals("list")) {
+					// list teleporters
+					String values = "Gates list :";
+					for (RealTeleporter teleporter : teleporters.byName.values()) {
+						values = values + " " + teleporter.name;
+					}
+					player.sendMessage(values);
+					return true;
+				} else if (param1.equals("orphan") || param1.equals("o")) {
+					// list orphan teleporters
+					String values = "Orphan gates :";
+					for (RealTeleporter teleporter1 : teleporters.byName.values()) {
+						if (teleporter1.target == null) {
+							boolean found = false;
+							for (RealTeleporter teleporter2 : teleporters.byName.values()) {
+								if (teleporter2.targetName.equals(teleporter1.name)) {
+									found = true;
+									break;
+								}
+							}
+							if (!found) {
+								values = values + " " + teleporter1.name;
+							}
+						}
+					}
+					player.sendMessage(values);
+					return true;
+				} else if (param1.equals("withouttarget") || param1.equals("wt")) {
+					// list teleporters without target
+					String values = "Gates without target :";
+					for (RealTeleporter teleporter : teleporters.byName.values()) {
+						if (teleporter.target == null) {
+							values = values + " " + teleporter.name;
+						}
+					}
+					player.sendMessage(values);
+					return true;
+				} else if (param1.equals("withoutsource") || param1.equals("ws")) {
+					// list teleporters without source
+					String values = "Gates without source :";
+					for (RealTeleporter teleporter1 : teleporters.byName.values()) {
+						boolean found = false;
+						for (RealTeleporter teleporter2 : teleporters.byName.values()) {
+							if (teleporter2.targetName.equals(teleporter1.name)) {
+								found = true;
+								break;
+							}
+						}
+						if (!found) {
+							values = values + " " + teleporter1.name;
+						}
+					}
+					player.sendMessage(values);
+					return true;
+				} else if (param1.equals("help") || param1.equals("h")) {
+					player.sendMessage("/rtel create <gate>");
+					player.sendMessage("/rtel remove <gate>");
+					player.sendMessage("/rtel link <gate1> <gate2>");
+					player.sendMessage("/rtel loop <gate1> <gate2>");
+					player.sendMessage("/rtel unlink <gate1>");
+					player.sendMessage("/rtel unloop <gate1>");
+					player.sendMessage("/rtel list          : full gates list");
+					player.sendMessage("/rtel orphan        : gates without source nor target list");
+					player.sendMessage("/rtel withouttarget : gates without target list");
+					player.sendMessage("/rtel withoutsource : gates without source list");
 				}
 			}
 		}

@@ -28,7 +28,7 @@ public class RealTeleporterPlugin extends RealPlugin
 	//-------------------------------------------------------------------------- RealTeleporterPlugin
 	public RealTeleporterPlugin()
 	{
-		super("tickleman", "RealTeleporter", "0.1");
+		super("tickleman", "RealTeleporter", "0.11");
 	}
 
 	//------------------------------------------------------------------------------- onPlayerCommand

@@ -2,6 +2,7 @@ package fr.crafter.tickleman.RealTeleporter;
 
 import java.util.HashMap;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -40,6 +41,10 @@ public class RealTeleporterPlugin extends RealPlugin
 			Player player = (Player)sender;
 			Location location = player.getLocation();
 			if (command.equals("rtel") || command.equals("rt")) {
+				if (!player.hasPermission("realteleporter.edit")) {
+					player.sendMessage(ChatColor.RED + "You do not have permission to do this.");
+					return true;
+				}
 				String param1 = args.length > 0 ? args[0] : "";
 				String param2 = args.length > 1 ? args[1] : "";
 				String param3 = args.length > 2 ? args[2] : "";

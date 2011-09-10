@@ -1,13 +1,19 @@
 name: RealTeleporter
 main: fr.crafter.tickleman.RealTeleporter.RealTeleporterPlugin
-version: 0.11
+version: 0.12
 website: http://plugins.crafter.fr/tickleman/RealTeleporter/
 authors:
   - tickleman
 commands:
-  rt:
-    description: RealTeleporter commands
-    usage: /<command> help
   rtel:
+    aliases: rt
     description: RealTeleporter commands
+    permission: realteleporter.edit
     usage: /<command> help
+permissions:
+    realteleporter.edit:
+        description: Allows you to edit teleporters and use commands
+        default: op
+    realteleporter.use:
+        description: Allows you to use a teleporter
+        default: op

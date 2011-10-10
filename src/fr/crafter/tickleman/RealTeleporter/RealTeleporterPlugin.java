@@ -28,7 +28,7 @@ public class RealTeleporterPlugin extends RealPlugin
 	//-------------------------------------------------------------------------- RealTeleporterPlugin
 	public RealTeleporterPlugin()
 	{
-		super("tickleman", "RealTeleporter", "0.11");
+		super("tickleman", "RealTeleporter", "0.12");
 	}
 
 	//------------------------------------------------------------------------------- onPlayerCommand
@@ -203,6 +203,7 @@ public class RealTeleporterPlugin extends RealPlugin
 		// events listeners
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
+		pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
 		// read teleporters file
 		teleporters = new RealTeleportersFile(this);
 		teleporters.load();

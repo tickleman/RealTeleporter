@@ -1,6 +1,6 @@
 name: RealTeleporter
 main: fr.crafter.tickleman.RealTeleporter.RealTeleporterPlugin
-version: 0.12
+version: 0.13
 website: http://plugins.crafter.fr/tickleman/RealTeleporter/
 authors:
   - tickleman

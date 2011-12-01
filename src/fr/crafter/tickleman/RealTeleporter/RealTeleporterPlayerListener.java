@@ -58,7 +58,7 @@ public class RealTeleporterPlayerListener extends PlayerListener
 							Location location = new Location(
 								world, target.x + .5, target.y, target.z + .5, yaw, 0
 							);
-							plugin.log.info(
+							plugin.getLog().info(
 								"<" + playerName + "> from "
 								+ teleporter.name
 								+ " to " + target.name + " ("

@@ -16,7 +16,7 @@ public class RealTeleportersFile
 	private final RealTeleporterPlugin plugin;
 	private final String fileName = "teleporters";
 
-	/** Teleporters list : "world;x;y;z" => RealTeleporter */
+	/** Teleporters list : "x;y;z;world" => RealTeleporter */
 	public HashMap<String, RealTeleporter> byLocation = new HashMap<String, RealTeleporter>();
 
 	/** Teleporters list : "name" => RealTeleporter */
@@ -34,9 +34,9 @@ public class RealTeleportersFile
 		byLocation = new HashMap<String, RealTeleporter>();
 		byName = new HashMap<String, RealTeleporter>();
 		try {
-			plugin.log.info("load plugins/" + plugin.name + "/" + fileName + ".txt");
+			plugin.getLog().info("load " + plugin.getDataFolder().getPath() + "/" + fileName + ".txt");
 			BufferedReader reader = new BufferedReader(
-				new FileReader("plugins/" + plugin.name + "/" + fileName + ".txt")
+				new FileReader(plugin.getDataFolder().getPath() + "/" + fileName + ".txt")
 			);
 			String buffer;
 			while ((buffer = reader.readLine()) != null) {
@@ -50,7 +50,7 @@ public class RealTeleportersFile
 						long z = Long.parseLong(line[4].trim());
 						String targetName = line[5].trim();
 						char direction = (line[6].trim().length() > 0) ? line[6].trim().charAt(0) : 'N';
-						String key = worldName + ";" + x + ";" + y + ";" + z;
+						String key = x + ";" + y + ";" + z + ";" + worldName;
 						RealTeleporter teleporter = new RealTeleporter(
 							name, worldName, x, y, z, targetName, direction
 						);
@@ -63,8 +63,8 @@ public class RealTeleportersFile
 			}
 			reader.close();
 		} catch (Exception e) {
-			plugin.log.warning(
-				"Needs plugins/" + plugin.name + "/" + fileName + ".txt file (will auto-create)"
+			plugin.getLog().warning(
+				"Needs " + plugin.getDataFolder().getPath() + "/" + fileName + ".txt file (will auto-create)"
 			);
 		}
 		solve();
@@ -76,7 +76,7 @@ public class RealTeleportersFile
 	{
 		try {
 			BufferedWriter writer = new BufferedWriter(
-				new FileWriter("plugins/" + plugin.name + "/" + fileName + ".txt")
+				new FileWriter(plugin.getDataFolder().getPath() + "/" + fileName + ".txt")
 			);
 			writer.write("#name,world,x,y,z,target,direction\n");
 			for (RealTeleporter teleporter : byName.values()) {
@@ -94,7 +94,9 @@ public class RealTeleportersFile
 			writer.flush();
 			writer.close();
 		} catch (Exception e) {
-			plugin.log.severe("Could not save plugins/" + plugin.name + "/" + fileName + ".txt file");
+			plugin.getLog().severe(
+				"Could not save " + plugin.getDataFolder().getPath() + "/" + fileName + ".txt file"
+			);
 		}
 	}
 
@@ -124,7 +126,7 @@ public class RealTeleportersFile
 	//---------------------------------------------------------------------------------- teleporterAt
 	public RealTeleporter teleporterAt(String worldName, long x, long y, long z)
 	{
-		String key = worldName + ";" + x + ";" + y + ";" + z;
+		String key = x + ";" + y + ";" + z + ";" + worldName;
 		return byLocation.get(key);
 	}
 

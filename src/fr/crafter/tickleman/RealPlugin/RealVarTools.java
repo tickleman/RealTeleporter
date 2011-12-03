@@ -4,12 +4,6 @@ package fr.crafter.tickleman.RealPlugin;
 public class RealVarTools
 {
 
-	//----------------------------------------------------------------------------------------- floor
-	public static Long floor(Double var)
-	{
-		return Math.round(Math.floor(var));
-	}
-
 	//-------------------------------------------------------------------------------------- toString
 	public static Boolean parseBoolean(String string)
 	{

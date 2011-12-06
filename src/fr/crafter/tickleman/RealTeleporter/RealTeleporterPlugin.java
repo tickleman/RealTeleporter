@@ -200,6 +200,8 @@ public class RealTeleporterPlugin extends RealPlugin
 	@Override
 	public void onEnable()
 	{
+		// enable
+		super.onEnable();
 		// events listeners
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
@@ -207,8 +209,6 @@ public class RealTeleporterPlugin extends RealPlugin
 		// read teleporters file
 		teleporters = new RealTeleportersFile(this);
 		teleporters.load();
-		// enable
-		super.onEnable();
 	}
 
 }

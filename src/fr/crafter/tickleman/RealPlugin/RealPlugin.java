@@ -8,7 +8,7 @@ public class RealPlugin extends JavaPlugin
 {
 
 	protected RealConfig      config = null;
-	private   RealTranslation     lang   = null;
+	private   RealTranslation lang   = null;
 	private   RealLog         log    = null;
 	private   RealPermissions perms  = null;
 
@@ -56,12 +56,14 @@ public class RealPlugin extends JavaPlugin
 	public void onDisable()
 	{
 		// disabled
-		getLog().info(
-			"version [" + getDescription().getVersion()
-			+ "] (" + getDescription().getAuthors().toString()
-			+ ") un-loaded",
-			true
-		);
+		if (log != null) {
+			getLog().info(
+				"version [" + getDescription().getVersion()
+				+ "] (" + getDescription().getAuthors().toString()
+				+ ") un-loaded",
+				true
+			);
+		}
 		// disable associated objects
 		config = null;
 		log    = null;

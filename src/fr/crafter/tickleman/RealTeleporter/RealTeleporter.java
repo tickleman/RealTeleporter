@@ -42,7 +42,7 @@ public class RealTeleporter
 	//-------------------------------------------------------------------------------- getLocationKey
 	public String getLocationKey()
 	{
-		return this.worldName + ";" + this.x + ";" + this.y + ";" + this.z;
+		return this.x + ";" + this.y + ";" + this.z + ";" + this.worldName;
 	}
 
 	//------------------------------------------------------------------------------------- setTarget

@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import fr.crafter.tickleman.RealPlugin.RealLocation;
+
 //#################################################################### RealTeleporterPlayerListener
 public class RealTeleporterPlayerListener extends PlayerListener
 {
@@ -39,10 +41,7 @@ public class RealTeleporterPlayerListener extends PlayerListener
 			RealTeleporter teleporter = plugin.teleporters.teleporterAt(player);
 			if ((teleporter != null) && (teleporter.target != null)) {
 				Location playerLocation = player.getLocation();
-				String key = playerLocation.getWorld().getName() + ";"
-					+ Math.round(Math.floor(playerLocation.getX())) + ";"
-					+ Math.round(Math.floor(playerLocation.getY())) + ";"
-					+ Math.round(Math.floor(playerLocation.getZ()));
+				String key = RealLocation.getId(playerLocation);
 				if (!key.equals(plugin.playerLocation.get(playerName))) {
 					plugin.playerLocation.put(playerName, key);
 					RealTeleporter target = teleporter.target;
@@ -67,10 +66,7 @@ public class RealTeleporterPlayerListener extends PlayerListener
 							);
 							player.teleport(location);
 							event.setTo(location);
-							plugin.playerLocation.put(
-								playerName,
-								target.worldName + ";" + target.x + ";" + target.y + ";" + target.z
-							);
+							plugin.playerLocation.put(playerName, target.getLocationKey());
 						}
 					}
 				}

@@ -47,6 +47,15 @@ public class RealFileTools
 		return (new File(fileName)).exists();
 	}
 
+	// ---------------------------------------------------------------------------------------- mkDir
+	public static void mkDir(String dirName)
+	{
+		File dir = new File(dirName);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+	}
+
 	// ----------------------------------------------------------------------------------- renameFile
 	public static void renameFile(String fromFile, String toFile)
 	{

@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealTeleporter;
+package fr.crafter.tickleman.realteleporter;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.crafter.tickleman.RealPlugin.RealLocation;
+import fr.crafter.tickleman.realplugin.RealLocation;
 
 //#################################################################### RealTeleporterPlayerListener
 public class RealTeleporterPlayerListener extends PlayerListener

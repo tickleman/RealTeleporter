@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealPlugin;
+package fr.crafter.tickleman.realplugin;
 
 //######################################################################################## VarTools
 public class RealVarTools

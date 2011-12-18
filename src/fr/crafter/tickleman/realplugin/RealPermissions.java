@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealPlugin;
+package fr.crafter.tickleman.realplugin;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealTeleporter;
+package fr.crafter.tickleman.realteleporter;
 
 import java.util.HashMap;
 
@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.PluginManager;
 
-import fr.crafter.tickleman.RealPlugin.RealPlugin;
+import fr.crafter.tickleman.realplugin.RealPlugin;
 
 //################################################################################## RealTeleporter
 public class RealTeleporterPlugin extends RealPlugin

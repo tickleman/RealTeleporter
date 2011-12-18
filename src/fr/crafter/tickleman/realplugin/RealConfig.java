@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealPlugin;
+package fr.crafter.tickleman.realplugin;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

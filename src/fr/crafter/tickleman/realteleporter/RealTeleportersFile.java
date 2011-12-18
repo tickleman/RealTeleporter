@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealTeleporter;
+package fr.crafter.tickleman.realteleporter;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

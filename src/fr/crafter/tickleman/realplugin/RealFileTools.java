@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealPlugin;
+package fr.crafter.tickleman.realplugin;
 
 import java.io.File;
 import java.io.FileOutputStream;

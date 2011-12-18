@@ -1,4 +1,4 @@
-package fr.crafter.tickleman.RealPlugin;
+package fr.crafter.tickleman.realplugin;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -91,6 +91,12 @@ public class RealLocation extends Location
 	public Location toLocation()
 	{
 		return (Location)this;
+	}
+
+	//-------------------------------------------------------------------------------------- toString
+	public String toString()
+	{
+		return getWorld().getName() + ";" + getBlockX() + ";" + getBlockY() + ";" + getBlockZ();
 	}
 
 }

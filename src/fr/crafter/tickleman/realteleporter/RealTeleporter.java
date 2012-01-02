@@ -1,5 +1,8 @@
 package fr.crafter.tickleman.realteleporter;
 
+import org.bukkit.Location;
+import org.bukkit.Server;
+
 //################################################################################## RealTeleporter
 public class RealTeleporter
 {
@@ -39,6 +42,12 @@ public class RealTeleporter
 		this.direction = direction;
 	}
 
+	//----------------------------------------------------------------------------------- getLocation
+	public Location getLocation(Server server)
+	{
+		return new Location(server.getWorld(worldName), x, y, z);
+	}
+
 	//-------------------------------------------------------------------------------- getLocationKey
 	public String getLocationKey()
 	{
@@ -55,9 +64,9 @@ public class RealTeleporter
 	//-------------------------------------------------------------------------------------- toString
 	public String toString()
 	{
-		String targetText = ((target != null) ? (" target " + target.name) : "");
+		String targetText = ((target != null) ? (" > " + target.name) : " > -");
 		return this.name + " (" + this.worldName + "," + this.x + "," + this.y + "," + this.z + ")"
-		+ " target name " + targetName + targetText;
+		+ targetText;
 	}
 
 	//------------------------------------------------------------------------------- yamlToDirection

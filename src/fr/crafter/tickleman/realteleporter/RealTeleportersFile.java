@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -26,6 +28,23 @@ public class RealTeleportersFile
 	public RealTeleportersFile(final RealTeleporterPlugin plugin)
 	{
 		this.plugin = plugin;
+	}
+
+	//--------------------------------------------------------------------------- getSortedByDistance
+	public Map<Double, RealTeleporter> getSortedByDistance(Location location)
+	{
+		Map<Double, RealTeleporter> sortedTeleporters = new TreeMap<Double, RealTeleporter>();
+		for (RealTeleporter teleporter : byLocation.values()) {
+			Location teleporterLocation = teleporter.getLocation(plugin.getServer());
+			if (location.getWorld().equals(teleporterLocation.getWorld())) {
+				double distance = Math.sqrt(
+					Math.pow(Math.abs(teleporterLocation.getX() - location.getX()), 2)
+					+ Math.pow(Math.abs(teleporterLocation.getZ() - location.getZ()), 2)
+				);
+				sortedTeleporters.put(distance, teleporter);
+			}
+		}
+		return sortedTeleporters;
 	}
 
 	//------------------------------------------------------------------------------------------ load

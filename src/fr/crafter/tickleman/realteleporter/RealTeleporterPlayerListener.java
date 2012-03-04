@@ -6,14 +6,15 @@ import java.util.HashMap;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.crafter.tickleman.realplugin.RealLocation;
 
 //#################################################################### RealTeleporterPlayerListener
-public class RealTeleporterPlayerListener extends PlayerListener
+public class RealTeleporterPlayerListener implements Listener
 {
 
 	private final RealTeleporterPlugin plugin;
@@ -26,7 +27,7 @@ public class RealTeleporterPlayerListener extends PlayerListener
 	}
 
 	//---------------------------------------------------------------------------------- onPlayerMove
-	@Override
+	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event)
 	{
 		long time = new Date().getTime();
@@ -77,7 +78,7 @@ public class RealTeleporterPlayerListener extends PlayerListener
 	}
 
 	//---------------------------------------------------------------------------------- onPlayerQuit
-	@Override
+	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event)
 	{
 		nextCheck.remove(event.getPlayer());

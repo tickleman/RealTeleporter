@@ -6,8 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.PluginManager;
 
 import fr.crafter.tickleman.realplugin.RealPlugin;
@@ -236,8 +234,7 @@ public class RealTeleporterPlugin extends RealPlugin
 		super.onEnable();
 		// events listeners
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
-		pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
+		pm.registerEvents(playerListener, this);
 		// read teleporters file
 		teleporters = new RealTeleportersFile(this);
 		teleporters.load();

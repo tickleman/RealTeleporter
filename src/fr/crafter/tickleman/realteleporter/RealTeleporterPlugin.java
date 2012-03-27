@@ -221,6 +221,7 @@ public class RealTeleporterPlugin extends RealPlugin
 						return true;
 					} else if (param1.equals("help")) {
 						player.sendMessage(tr("/rtel create <gate> : create a gate"));
+						player.sendMessage(tr("/rtel move <gate> : move a gate"));
 						player.sendMessage(tr("/rtel remove <gate> : remove gate"));
 						player.sendMessage(tr("/rtel link <gate1> <gate2> : link a gate to another"));
 						player.sendMessage(tr("/rtel loop <gate1> <gate2> : loop two gates"));

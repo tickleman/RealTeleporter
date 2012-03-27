@@ -26,7 +26,7 @@ public class RealTeleporter
 		this.y = y;
 		this.z = z;
 		this.targetName = "";
-		this.direction = yamlToDirection(yaml);
+		this.direction = yawToDirection(yaml);
 	}
 
 	//-------------------------------------------------------------------------------- RealTeleporter
@@ -54,6 +54,15 @@ public class RealTeleporter
 		return this.x + ";" + this.y + ";" + this.z + ";" + this.worldName;
 	}
 
+	//----------------------------------------------------------------------------------- setLocation
+	public void setLocation(Location location)
+	{
+		this.x = location.getBlockX();
+		this.y = location.getBlockY();
+		this.z = location.getBlockZ();
+		this.direction = yawToDirection(location.getYaw());
+	}
+
 	//------------------------------------------------------------------------------------- setTarget
 	public void setTarget(RealTeleporter target)
 	{
@@ -69,18 +78,18 @@ public class RealTeleporter
 		+ targetText;
 	}
 
-	//------------------------------------------------------------------------------- yamlToDirection
-	public static char yamlToDirection(float yaml)
+	//------------------------------------------------------------------------------- yawToDirection
+	public static char yawToDirection(float yaw)
 	{
 		char direction;
-		yaml = Math.round(((yaml % 360) + 360) % 360);
-		if (yaml < 45) {
+		yaw = Math.round(((yaw % 360) + 360) % 360);
+		if (yaw < 45) {
 			direction = 'W';
-		} else if (yaml < 135) {
+		} else if (yaw < 135) {
 			direction = 'N';
-		} else if (yaml < 225) {
+		} else if (yaw < 225) {
 			direction = 'E';
-		} else if (yaml < 315) {
+		} else if (yaw < 315) {
 			direction = 'S';
 		} else {
 			direction = 'W';

@@ -69,6 +69,17 @@ public class RealTeleporterPlugin extends RealPlugin
 							}
 						}
 						return true;
+					} else if (param1.equals("move")) {
+						// move
+						RealTeleporter teleporter = teleporters.byName.get(param2);
+						if (teleporter != null) {
+							teleporter.setLocation(location);
+							teleporters.save();
+							player.sendMessage(tr("You moved teleporter +1").replace("+1", teleporter.name));
+						} else {
+							player.sendMessage(tr("Teleporter +1 does not exist").replace("+1", param2));
+						}
+						return true;
 					} else if (param1.equals("remove")) {
 						// remove
 						RealTeleporter teleporter = teleporters.byName.get(param2);
@@ -239,6 +250,7 @@ public class RealTeleporterPlugin extends RealPlugin
 		if (param.equals("r")) return "remove";
 		if (param.equals("lk")) return "link";
 		if (param.equals("l") || param.equals("lp")) return "loop";
+		if (param.equals("m")) return "move";
 		if (param.equals("uk")) return "unlink";
 		if (param.equals("u")) return "unloop";
 		if (param.equals("o")) return "orphan";

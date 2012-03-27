@@ -1,0 +1,32 @@
+# ADMIN
+Create teleporter +1=Create teleporter +1
+Gates list=Gates list
+Gates without source=Gates without source
+Gates without target=Gates without target
+Link teleporter +1 to +2=Link teleporter +1 to +2
+Orphan gates=Orphan gates
+Remove teleporter +1=Remove teleporter +1
+Teleporter +1=Teleporter +1
+Teleporter +1 already exist=Teleporter +1 already exist
+Teleporter +1 does not exist=Teleporter +1 does not exist
+Unlinked teleporter +1=Unlinked teleporter +1
+You must give the teleporter a name=You must give the teleporter a name
+
+# TELEPORT
+Teleport from +1 to +2=Teleport from +1 to +2
+
+# HELP
+/rtel create <gate> : create a gate=/rtel create <gate> : create a gate
+/rtel remove <gate> : remove gate=/rtel remove <gate> : remove gate
+/rtel link <gate1> <gate2> : link a gate to another=/rtel link <gate1> <gate2> : link a gate to another
+/rtel loop <gate1> <gate2> : loop two gates=/rtel loop <gate1> <gate2> : loop two gates
+/rtel unlink <gate1> : remove link from gate=/rtel unlink <gate1> : remove link from gate
+/rtel unloop <gate1> : remove link from and its destination=/rtel unloop <gate1> : remove link from and its destination
+/rtel list : full gates list=/rtel list : full gates list
+/rtel orphan : gates without source nor target list=/rtel orphan : gates without source nor target list
+/rtel withouttarget : gates without target list=/rtel withouttarget : gates without target list
+/rtel withoutsource : gates without source list=/rtel withoutsource : gates without source list
+/rtel nearest : gates near from you=/rtel nearest : gates near from you
+
+# MISC
+You don't have access to this command=You don't have access to this command

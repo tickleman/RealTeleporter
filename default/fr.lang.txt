@@ -1,0 +1,32 @@
+# ADMIN
+Create teleporter +1=Nouveau teleporteur +1
+Gates list=Liste des teleporteurs
+Gates without source=Teleporteurs sans source
+Gates without target=Teleporters sans destination
+Link teleporter +1 to +2=Relie teleporteur +1 a +2
+Orphan gates=Teleporteurs orphelins
+Remove teleporter +1=Supprime teleporteur +1
+Teleporter +1=Teleporteur +1
+Teleporter +1 already exist=Le teleporteur +1 existe deja
+Teleporter +1 does not exist=Le teleporteur +1 n'existe pas
+Unlinked teleporter +1=Teleporteur +1 delie
+You must give the teleporter a name=Tu dois donner un nom au teleporter
+
+# TELEPORT
+Teleport from +1 to +2=Teleportation depuis +1 vers +2
+
+# HELP
+/rtel create <gate> : create a gate=/rtel create <gate> : nouveau teleporteur
+/rtel remove <gate> : remove gate=/rtel remove <gate> : supprime teleporteur
+/rtel link <gate1> <gate2> : link a gate to another=/rtel link <gate1> <gate2> : lie un teleporteur vers un autre
+/rtel loop <gate1> <gate2> : loop two gates=/rtel loop <gate1> <gate2> : boucle deux teleporteurs
+/rtel unlink <gate1> : remove link from gate=/rtel unlink <gate1> : retire le lien du teleporteur
+/rtel unloop <gate1> : remove link from and its destination=/rtel unloop <gate1> : retire boucle des teleporteurs
+/rtel list : full gates list=/rtel list : liste des teleporteurs
+/rtel orphan : gates without source nor target list=/rtel orphan : teleporteurs sans source ni destination
+/rtel withouttarget : gates without target list=/rtel withouttarget : teleporteurs sans destination
+/rtel withoutsource : gates without source list=/rtel withoutsource : teleporteurs sans source
+/rtel nearest : gates near from you=/rtel nearest : teleporteurs les plus proches de toi
+
+# MISC
+You don't have access to this command=Tu n'a pas acces a cette commande

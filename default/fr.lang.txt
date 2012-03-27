@@ -17,6 +17,7 @@ Teleport from +1 to +2=Teleportation depuis +1 vers +2
 
 # HELP
 /rtel create <gate> : create a gate=/rtel create <gate> : nouveau teleporteur
+/rtel move <gate> : move a gate=/rtel move <gate> : deplace teleporteur
 /rtel remove <gate> : remove gate=/rtel remove <gate> : supprime teleporteur
 /rtel link <gate1> <gate2> : link a gate to another=/rtel link <gate1> <gate2> : lie un teleporteur vers un autre
 /rtel loop <gate1> <gate2> : loop two gates=/rtel loop <gate1> <gate2> : boucle deux teleporteurs

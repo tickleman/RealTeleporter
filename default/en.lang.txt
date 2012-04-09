@@ -30,4 +30,5 @@ Teleport from +1 to +2=Teleport from +1 to +2
 /rtel nearest : gates near from you=/rtel nearest : gates near from you
 
 # MISC
+Unknown teleporter command=Unknown teleporter command
 You don't have access to this command=You don't have access to this command

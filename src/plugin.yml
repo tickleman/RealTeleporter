@@ -1,6 +1,6 @@
 name: RealTeleporter
 main: fr.crafter.tickleman.realteleporter.RealTeleporterPlugin
-version: 1.02
+version: 1.04
 website: http://plugins.crafter.fr/tickleman/RealTeleporter/
 author: tickleman
 depend: [RealPlugin]
@@ -11,3 +11,64 @@ commands:
   rtel:
     description: RealTeleporter commands
     usage: /<command> help
+permissions:
+  realteleporter.*:
+    description: All realteleporter accesses
+    children:
+      realteleporter.teleport: true
+      realteleporter.teleport.showgatename: true
+      realteleporter.create: true
+      realteleporter.move: true
+      realteleporter.remove: true
+      realteleporter.link: true
+      realteleporter.loop: true
+      realteleporter.unlink: true
+      realteleporter.unloop: true
+      realteleporter.list: true
+      realteleporter.orphan: true
+      realteleporter.withouttarget: true
+      realteleporter.withoutsource: true
+      realteleporter.nearest: true
+    realteleporter.teleport:
+      description: You can teleport
+      default: true
+    realteleporter.teleport.showgatename:
+      description: Shows gates names when you teleport
+      default: op
+    realteleporter.create:
+      description: Create teleporter
+      default: op
+    realteleporter.move:
+      description: Move teleporter to your position
+      default: op
+    realteleporter.remove:
+      description: Remove teleporter
+      default: op
+    realteleporter.link:
+      description: Link a teleporter to its target
+      default: op
+    realteleporter.loop:
+      description: Loop two teleporters
+      default: op
+    realteleporter.unlink:
+      description: Unlink a teleporter from its target
+      default: op
+    realteleporter.unloop:
+      description: Unloop a teleporter and its target
+      default: op
+    realteleporter.list:
+      description: List all teleporters
+      default: op
+    realteleporter.orphan:
+      description: List orphan teleporters
+      default: op
+    realteleporter.withouttarget:
+      description: List teleporters without target
+      default: op
+    realteleporter.withoutsource:
+      description: List teleporters without source
+      default: op
+    realteleporter.nearest:
+      description: List nearest teleporters
+      default: op
+    

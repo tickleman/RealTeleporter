@@ -37,10 +37,7 @@ public class RealTeleporterPlugin extends RealPlugin
 			String command = cmd.getName().toLowerCase();
 			Player player = (Player)sender;
 			Location location = player.getLocation();
-			if (
-				(command.equals("rtel") || command.equals("rt"))
-				&& hasPermission(player, "realteleporter")
-			) {
+			if (command.equals("rtel") || command.equals("rt")) {
 				String param1 = args.length > 0 ? args[0] : "";
 				String param2 = args.length > 1 ? args[1] : "";
 				String param3 = args.length > 2 ? args[2] : "";
@@ -220,24 +217,27 @@ public class RealTeleporterPlugin extends RealPlugin
 						}
 						return true;
 					} else if (param1.equals("help")) {
-						player.sendMessage(tr("/rtel create <gate> : create a gate"));
-						player.sendMessage(tr("/rtel move <gate> : move a gate"));
-						player.sendMessage(tr("/rtel remove <gate> : remove gate"));
-						player.sendMessage(tr("/rtel link <gate1> <gate2> : link a gate to another"));
-						player.sendMessage(tr("/rtel loop <gate1> <gate2> : loop two gates"));
-						player.sendMessage(tr("/rtel unlink <gate1> : remove link from gate"));
-						player.sendMessage(tr("/rtel unloop <gate1> : remove link from and its destination"));
-						player.sendMessage(tr("/rtel list : full gates list"));
-						player.sendMessage(tr("/rtel orphan : gates without source nor target list"));
-						player.sendMessage(tr("/rtel withouttarget : gates without target list"));
-						player.sendMessage(tr("/rtel withoutsource : gates without source list"));
-						player.sendMessage(tr("/rtel nearest : gates near from you"));
+						if (hasPermission(player, "realteleporter.create"))        player.sendMessage(tr("/rtel create <gate> : create a gate"));
+						if (hasPermission(player, "realteleporter.move"))          player.sendMessage(tr("/rtel move <gate> : move a gate"));
+						if (hasPermission(player, "realteleporter.remove"))        player.sendMessage(tr("/rtel remove <gate> : remove gate"));
+						if (hasPermission(player, "realteleporter.link"))          player.sendMessage(tr("/rtel link <gate1> <gate2> : link a gate to another"));
+						if (hasPermission(player, "realteleporter.loop"))          player.sendMessage(tr("/rtel loop <gate1> <gate2> : loop two gates"));
+						if (hasPermission(player, "realteleporter.unlink"))        player.sendMessage(tr("/rtel unlink <gate1> : remove link from gate"));
+						if (hasPermission(player, "realteleporter.unloop"))        player.sendMessage(tr("/rtel unloop <gate1> : remove link from and its destination"));
+						if (hasPermission(player, "realteleporter.list"))          player.sendMessage(tr("/rtel list : full gates list"));
+						if (hasPermission(player, "realteleporter.orphan"))        player.sendMessage(tr("/rtel orphan : gates without source nor target list"));
+						if (hasPermission(player, "realteleporter.withouttarget")) player.sendMessage(tr("/rtel withouttarget : gates without target list"));
+						if (hasPermission(player, "realteleporter.withoutsource")) player.sendMessage(tr("/rtel withoutsource : gates without source list"));
+						if (hasPermission(player, "realteleporter.nearest"))       player.sendMessage(tr("/rtel nearest : gates near from you"));
 						return true;
 					}
 				} else {
-					player.sendMessage(tr("You don't have access to this command"));
+					player.sendMessage(tr("Unknown teleporter command"));
 					return true;
 				}
+			} else {
+				player.sendMessage(tr("You don't have access to this command"));
+				return true;
 			}
 		}
 		return false;

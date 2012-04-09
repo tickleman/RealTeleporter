@@ -30,4 +30,5 @@ Teleport from +1 to +2=Teleportation depuis +1 vers +2
 /rtel nearest : gates near from you=/rtel nearest : teleporteurs les plus proches de toi
 
 # MISC
+Unknown teleporter command=Commande de teleporteur inconnue
 You don't have access to this command=Tu n'a pas acces a cette commande

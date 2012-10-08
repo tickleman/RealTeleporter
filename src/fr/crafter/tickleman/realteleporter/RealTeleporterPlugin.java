@@ -182,7 +182,14 @@ public class RealTeleporterPlugin extends RealPlugin
 						// teleport to a teleporter
 						RealTeleporter teleporter = teleporters.byName.get(param2);
 						if (teleporter != null) {
-							player.teleport(teleporter.teleport(this, player));
+							teleporter.teleportTo(this, player);
+							getLog().info(
+								"<" + player.getName() + "> to " + teleporter.name + " ("
+								+ teleporter.worldName
+								+ "," + teleporter.x + "," + teleporter.y + "," + teleporter.z + ","
+								+ teleporter.direction
+								+ ")"
+							);
 						} else {
 							player.sendMessage(tr("Teleporter +1 does not exist").replace("+1", param2));
 						}
@@ -205,7 +212,7 @@ public class RealTeleporterPlugin extends RealPlugin
 									location.getYaw(),
 									location.getPitch()
 								);
-								teleporter.teleport(this, player, true);
+								teleporter.teleportFrom(this, player, true);
 								player.teleport(teleport);
 							} else {
 								player.sendMessage(tr("Teleporter +1 has no destination").replace("+1", param2));
@@ -213,6 +220,7 @@ public class RealTeleporterPlugin extends RealPlugin
 						} else {
 							player.sendMessage(tr("Teleporter +1 does not exist").replace("+1", param2));
 						}
+						return true;
 					} else if (param1.equals("withouttarget")) {
 						// list teleporters without target
 						String values = tr("Gates without target") + " :";

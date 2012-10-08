@@ -45,7 +45,7 @@ public class RealTeleporterPlayerListener implements Listener
 					String key = RealLocation.getId(playerLocation);
 					if (!key.equals(plugin.playerLocation.get(playerName))) {
 						plugin.playerLocation.put(playerName, key);
-						Location location = teleporter.teleport(plugin, player);
+						Location location = teleporter.teleportFrom(plugin, player);
 						if (location != null) {
 							event.setTo(location);
 						}

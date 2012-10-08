@@ -72,47 +72,67 @@ public class RealTeleporter
 		this.target = target;
 	}
 
-	//-------------------------------------------------------------------------------------- teleport
-	public Location teleport(RealTeleporterPlugin plugin, Player player)
+	//---------------------------------------------------------------------------------- teleportFrom
+	public Location teleportFrom(RealTeleporterPlugin plugin, Player player)
 	{
-		return teleport(plugin, player, false);
+		return teleportFrom(plugin, player, false);
 	}
 
-	//-------------------------------------------------------------------------------------- teleport
-	public Location teleport(RealTeleporterPlugin plugin, Player player, boolean virtual)
+	//---------------------------------------------------------------------------------- teleportFrom
+	public Location teleportFrom(RealTeleporterPlugin plugin, Player player, boolean virtual)
 	{
 		Location location = null;
 		String playerName = player.getName();
 		for (World world : plugin.getServer().getWorlds()) {
 			if (world.getName().equals(target.worldName)) {
+				location = target.teleportTo(plugin, player, virtual);
+				if (location != null) {
+					plugin.getLog().info(
+						"<" + playerName + "> from "
+						+ name
+						+ " to " + target.name + " ("
+						+ target.worldName + "," + target.x + "," + target.y + "," + target.z + ","
+						+ direction
+						+ ")"
+					);
+					if (plugin.hasPermission(player, "realteleporter.teleport.showgatename")) {
+						player.sendMessage(
+							plugin.tr("Teleport from +1 to +2")
+							.replace("+1", name)
+							.replace("+2", target.name)
+						);
+					}
+				}
+			}
+		}
+		return location;
+	}
+
+	//------------------------------------------------------------------------------------ teleportTo
+	public Location teleportTo(RealTeleporterPlugin plugin, Player player)
+	{
+		return teleportTo(plugin, player, false);
+	}
+
+	//------------------------------------------------------------------------------------ teleportTo
+	public Location teleportTo(RealTeleporterPlugin plugin, Player player, boolean virtual)
+	{
+		String playerName = player.getName();
+		Location location = null;
+		for (World world : plugin.getServer().getWorlds()) {
+			if (world.getName().equals(worldName)) {
 				float yaw;
-				switch (target.direction) {
+				switch (direction) {
 					case 'E': yaw = 180; break;
 					case 'S': yaw = 270; break;
 					case 'W': yaw = 0; break;
 					default:  yaw = 90; break;
 				}
-				location = new Location(
-					world, target.x + .5, target.y, target.z + .5, yaw, 0
-				);
-				plugin.getLog().info(
-					"<" + playerName + "> from "
-					+ name
-					+ " to " + target.name + " ("
-					+ target.worldName + "," + target.x + "," + target.y + "," + target.z + "," + yaw
-					+ ")"
-				);
+				location = new Location(world, x + .5, y, z + .5, yaw, 0);
 				if (!virtual) {
 					player.teleport(location);
 				}
-				plugin.playerLocation.put(playerName, target.getLocationKey());
-				if (plugin.hasPermission(player, "realteleporter.teleport.showgatename")) {
-					player.sendMessage(
-						plugin.tr("Teleport from +1 to +2")
-						.replace("+1", name)
-						.replace("+2", target.name)
-					);
-				}
+				plugin.playerLocation.put(playerName, getLocationKey());
 			}
 		}
 		return location;

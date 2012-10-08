@@ -178,6 +178,41 @@ public class RealTeleporterPlugin extends RealPlugin
 						}
 						player.sendMessage(values);
 						return true;
+					} else if (param1.equals("tp")) {
+						// teleport to a teleporter
+						RealTeleporter teleporter = teleporters.byName.get(param2);
+						if (teleporter != null) {
+							player.teleport(teleporter.teleport(this, player));
+						} else {
+							player.sendMessage(tr("Teleporter +1 does not exist").replace("+1", param2));
+						}
+						return true;
+					} else if (param1.equals("trans")) {
+						// translation teleport from source to destination
+						RealTeleporter teleporter = teleporters.byName.get(param2);
+						if (teleporter != null) {
+							if (teleporter.target != null) {
+								Location source = teleporter.getLocation(getServer());
+								Location destination = teleporter.target.getLocation(getServer());
+								double tx = location.getX() - source.getX();
+								double ty = location.getY() - source.getY();
+								double tz = location.getZ() - source.getZ();
+								Location teleport = new Location(
+									destination.getWorld(),
+									destination.getX() + tx,
+									destination.getY() + ty,
+									destination.getZ() + tz,
+									location.getYaw(),
+									location.getPitch()
+								);
+								teleporter.teleport(this, player, true);
+								player.teleport(teleport);
+							} else {
+								player.sendMessage(tr("Teleporter +1 has no destination").replace("+1", param2));
+							}
+						} else {
+							player.sendMessage(tr("Teleporter +1 does not exist").replace("+1", param2));
+						}
 					} else if (param1.equals("withouttarget")) {
 						// list teleporters without target
 						String values = tr("Gates without target") + " :";
@@ -226,6 +261,8 @@ public class RealTeleporterPlugin extends RealPlugin
 						if (hasPermission(player, "realteleporter.unloop"))        player.sendMessage(tr("/rtel unloop <gate1> : remove link from and its destination"));
 						if (hasPermission(player, "realteleporter.list"))          player.sendMessage(tr("/rtel list : full gates list"));
 						if (hasPermission(player, "realteleporter.orphan"))        player.sendMessage(tr("/rtel orphan : gates without source nor target list"));
+						if (hasPermission(player, "realteleporter.tp"))            player.sendMessage(tr("/rtel tp <gate2> : teleport to gate"));
+						if (hasPermission(player, "realteleporter.trans"))         player.sendMessage(tr("/rtel trans <gate1> : translation teleport from gate"));
 						if (hasPermission(player, "realteleporter.withouttarget")) player.sendMessage(tr("/rtel withouttarget : gates without target list"));
 						if (hasPermission(player, "realteleporter.withoutsource")) player.sendMessage(tr("/rtel withoutsource : gates without source list"));
 						if (hasPermission(player, "realteleporter.nearest"))       player.sendMessage(tr("/rtel nearest : gates near from you"));

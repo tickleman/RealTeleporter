@@ -9,6 +9,7 @@ Remove teleporter +1=Supprime teleporteur +1
 Teleporter +1=Teleporteur +1
 Teleporter +1 already exist=Le teleporteur +1 existe deja
 Teleporter +1 does not exist=Le teleporteur +1 n'existe pas
+Teleporter +1 has no destination=Le teleporter +1 n'a pas de destination
 Unlinked teleporter +1=Teleporteur +1 delie
 You must give the teleporter a name=Tu dois donner un nom au teleporter
 
@@ -25,6 +26,8 @@ Teleport from +1 to +2=Teleportation depuis +1 vers +2
 /rtel unloop <gate1> : remove link from and its destination=/rtel unloop <gate1> : retire boucle des teleporteurs
 /rtel list : full gates list=/rtel list : liste des teleporteurs
 /rtel orphan : gates without source nor target list=/rtel orphan : teleporteurs sans source ni destination
+/rtel tp <gate2> : teleport to gate=/rtel tp <gate2> : teleporte vers la destination
+/rtel trans <gate1> : translation teleport from gate=/rtel trans <gate1> : teleportation translation depuis source
 /rtel withouttarget : gates without target list=/rtel withouttarget : teleporteurs sans destination
 /rtel withoutsource : gates without source list=/rtel withoutsource : teleporteurs sans source
 /rtel nearest : gates near from you=/rtel nearest : teleporteurs les plus proches de toi

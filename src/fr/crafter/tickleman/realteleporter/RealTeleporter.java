@@ -2,6 +2,8 @@ package fr.crafter.tickleman.realteleporter;
 
 import org.bukkit.Location;
 import org.bukkit.Server;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 //################################################################################## RealTeleporter
 public class RealTeleporter
@@ -68,6 +70,52 @@ public class RealTeleporter
 	{
 		this.targetName = ((target == null) ? "" : target.name);
 		this.target = target;
+	}
+
+	//-------------------------------------------------------------------------------------- teleport
+	public Location teleport(RealTeleporterPlugin plugin, Player player)
+	{
+		return teleport(plugin, player, false);
+	}
+
+	//-------------------------------------------------------------------------------------- teleport
+	public Location teleport(RealTeleporterPlugin plugin, Player player, boolean virtual)
+	{
+		Location location = null;
+		String playerName = player.getName();
+		for (World world : plugin.getServer().getWorlds()) {
+			if (world.getName().equals(target.worldName)) {
+				float yaw;
+				switch (target.direction) {
+					case 'E': yaw = 180; break;
+					case 'S': yaw = 270; break;
+					case 'W': yaw = 0; break;
+					default:  yaw = 90; break;
+				}
+				location = new Location(
+					world, target.x + .5, target.y, target.z + .5, yaw, 0
+				);
+				plugin.getLog().info(
+					"<" + playerName + "> from "
+					+ name
+					+ " to " + target.name + " ("
+					+ target.worldName + "," + target.x + "," + target.y + "," + target.z + "," + yaw
+					+ ")"
+				);
+				if (!virtual) {
+					player.teleport(location);
+				}
+				plugin.playerLocation.put(playerName, target.getLocationKey());
+				if (plugin.hasPermission(player, "realteleporter.teleport.showgatename")) {
+					player.sendMessage(
+						plugin.tr("Teleport from +1 to +2")
+						.replace("+1", name)
+						.replace("+2", target.name)
+					);
+				}
+			}
+		}
+		return location;
 	}
 
 	//-------------------------------------------------------------------------------------- toString

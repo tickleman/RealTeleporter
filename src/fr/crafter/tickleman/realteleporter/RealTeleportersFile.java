@@ -1,5 +1,9 @@
 package fr.crafter.tickleman.realteleporter;
 
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -7,9 +11,6 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 //############################################################################# RealTeleportersFile
 public class RealTeleportersFile
@@ -19,10 +20,10 @@ public class RealTeleportersFile
 	private final String fileName = "teleporters";
 
 	/** Teleporters list : "x;y;z;world" => RealTeleporter */
-	public HashMap<String, RealTeleporter> byLocation = new HashMap<String, RealTeleporter>();
+	public HashMap<String, RealTeleporter> byLocation = new HashMap<>();
 
 	/** Teleporters list : "name" => RealTeleporter */
-	public HashMap<String, RealTeleporter> byName = new HashMap<String, RealTeleporter>();
+	public HashMap<String, RealTeleporter> byName = new HashMap<>();
 
 	//--------------------------------------------------------------------------- RealTeleportersFile
 	public RealTeleportersFile(final RealTeleporterPlugin plugin)
@@ -33,10 +34,14 @@ public class RealTeleportersFile
 	//--------------------------------------------------------------------------- getSortedByDistance
 	public Map<Double, RealTeleporter> getSortedByDistance(Location location)
 	{
-		Map<Double, RealTeleporter> sortedTeleporters = new TreeMap<Double, RealTeleporter>();
+		Map<Double, RealTeleporter> sortedTeleporters = new TreeMap<>();
+		World world = location.getWorld();
+		if (world == null) {
+			return sortedTeleporters;
+		}
 		for (RealTeleporter teleporter : byLocation.values()) {
 			Location teleporterLocation = teleporter.getLocation(plugin.getServer());
-			if (location.getWorld().equals(teleporterLocation.getWorld())) {
+			if (world.equals(teleporterLocation.getWorld())) {
 				double distance = Math.sqrt(
 					Math.pow(Math.abs(teleporterLocation.getX() - location.getX()), 2)
 					+ Math.pow(Math.abs(teleporterLocation.getZ() - location.getZ()), 2)
@@ -48,10 +53,10 @@ public class RealTeleportersFile
 	}
 
 	//------------------------------------------------------------------------------------------ load
-	public RealTeleportersFile load()
+	public void load()
 	{
-		byLocation = new HashMap<String, RealTeleporter>();
-		byName = new HashMap<String, RealTeleporter>();
+		byLocation = new HashMap<>();
+		byName = new HashMap<>();
 		try {
 			plugin.getLog().info("load " + plugin.getDataFolder().getPath() + "/" + fileName + ".txt");
 			BufferedReader reader = new BufferedReader(
@@ -81,13 +86,13 @@ public class RealTeleportersFile
 				}
 			}
 			reader.close();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			plugin.getLog().warning(
 				"Needs " + plugin.getDataFolder().getPath() + "/" + fileName + ".txt file (will auto-create)"
 			);
 		}
 		solve();
-		return this;
 	}
 
 	//------------------------------------------------------------------------------------------ save

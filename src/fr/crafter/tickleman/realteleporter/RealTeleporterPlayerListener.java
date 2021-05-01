@@ -1,8 +1,8 @@
 package fr.crafter.tickleman.realteleporter;
 
+import fr.crafter.tickleman.realplugin.RealLocation;
 import java.util.Date;
 import java.util.HashMap;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,14 +10,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.crafter.tickleman.realplugin.RealLocation;
-
 //#################################################################### RealTeleporterPlayerListener
 public class RealTeleporterPlayerListener implements Listener
 {
 
 	private final RealTeleporterPlugin plugin;
-	private HashMap<Player, Long> nextCheck = new HashMap<Player, Long>();
+	private final HashMap<Player, Long> nextCheck = new HashMap<>();
 
 	//------------------------------------------------------------------ RealTeleporterPlayerListener
 	public RealTeleporterPlayerListener(RealTeleporterPlugin instance)
@@ -50,7 +48,8 @@ public class RealTeleporterPlayerListener implements Listener
 							event.setTo(location);
 						}
 					}
-				} else if (plugin.playerLocation.get(playerName) != null) {
+				}
+				else if (plugin.playerLocation.get(playerName) != null) {
 					plugin.playerLocation.remove(playerName);
 				}
 			}

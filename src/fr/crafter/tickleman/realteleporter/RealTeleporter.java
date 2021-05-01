@@ -109,9 +109,9 @@ public class RealTeleporter
 	}
 
 	//------------------------------------------------------------------------------------ teleportTo
-	public Location teleportTo(RealTeleporterPlugin plugin, Player player)
+	public void teleportTo(RealTeleporterPlugin plugin, Player player)
 	{
-		return teleportTo(plugin, player, false);
+		teleportTo(plugin, player, false);
 	}
 
 	//------------------------------------------------------------------------------------ teleportTo
@@ -125,8 +125,8 @@ public class RealTeleporter
 				switch (direction) {
 					case 'E': yaw = 180; break;
 					case 'S': yaw = 270; break;
-					case 'W': yaw = 0; break;
-					default:  yaw = 90; break;
+					case 'W': yaw = 0;   break;
+					default:  yaw = 90;  break;
 				}
 				location = new Location(world, x + .5, y, z + .5, yaw, 0);
 				if (!virtual) {
@@ -143,7 +143,7 @@ public class RealTeleporter
 	{
 		String targetText = ((target != null) ? (" > " + target.name) : " > -");
 		return this.name + " (" + this.worldName + "," + this.x + "," + this.y + "," + this.z + ")"
-		+ targetText;
+			+ targetText;
 	}
 
 	//------------------------------------------------------------------------------- yawToDirection
@@ -151,17 +151,11 @@ public class RealTeleporter
 	{
 		char direction;
 		yaw = Math.round(((yaw % 360) + 360) % 360);
-		if (yaw < 45) {
-			direction = 'W';
-		} else if (yaw < 135) {
-			direction = 'N';
-		} else if (yaw < 225) {
-			direction = 'E';
-		} else if (yaw < 315) {
-			direction = 'S';
-		} else {
-			direction = 'W';
-		}
+		if (yaw < 45)       direction = 'W';
+		else if (yaw < 135) direction = 'N';
+		else if (yaw < 225) direction = 'E';
+		else if (yaw < 315) direction = 'S';
+		else                direction = 'W';
 		return direction;
 	}
 
